@@ -1,0 +1,13 @@
+mixin message
+  include message.pug
+
+section#MessageList.component.section(
+  data-url="/views/message-list"
+)
+
+  h2.title.is-3 Most recent messages
+
+  +message
+  +message
+  +message
+  +message

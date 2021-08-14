@@ -1,0 +1,25 @@
+mixin tab(name, active, url)
+  if active
+    li.is-active
+      a(href=url) #{name}
+  else
+    li
+      a(href=url) #{name}
+
+header#Header.component.hero.is-primary(
+  data-url=`/views/header${data.search || ''}`
+  data-scripturl="/assets/scripts/header.js"
+)
+  .hero-body
+    .container.has-text-centered
+      .title UbiChat
+      if data.test
+        .subtitle Test #{data.test}
+  .hero-foot
+    nav.tabs.is-boxed
+      .container
+        ul
+          +tab('Home', true, '/')
+          +tab('Favorites', false, '/favorites')
+          li.is-flex-grow-1
+          +tab('Profile', false, '/users/1')

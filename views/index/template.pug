@@ -1,0 +1,15 @@
+extends ../layout.pug
+
+block title
+  title UbiChat – Home
+
+block styles
+  link(rel="stylesheet" href="/assets/styles/index.css")
+
+block scripts
+  script(defer type="module" src="/assets/scripts/index.js")
+
+block content
+  include ../header/template.pug
+  include ../message-box/template.pug
+  include ../message-list/template.pug

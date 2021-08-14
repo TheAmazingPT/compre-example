@@ -1,0 +1,20 @@
+section#MessageBox.component.section(
+  data-url="/views/message-box"
+  data-scripturl="/assets/scripts/message-box.js"
+)
+
+  h2.title.is-3 Share something with your friends
+
+  form#MessageBoxForm
+    .field
+      .control
+        textarea.textarea
+          | Example Payload
+
+    .field.is-grouped.is-pulled-right
+      .control
+        p 23 / 140
+      .control
+        button.button.is-light Cancel
+      .control
+        button.button.is-primary Submit
