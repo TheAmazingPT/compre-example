@@ -32,6 +32,8 @@ export default class Component {
     this.script.remove();
   }
 
+  // TODO: experiment with Shadow DOM, where a script can be automatically be
+  // executed.
   initScript(componentId) {
     if (!this.element.dataset.scripturl) {
       return;
@@ -48,13 +50,14 @@ export default class Component {
     this.script = document.head.appendChild(newScriptTag);
   }
 
-  async refresh() {
-    const res = await fetch(this.element.dataset.url);
-    const html = await res.text();
+  // html could be the result of a fetch request
+  async refresh(html = '') {
+    if (!html) {
+      const res = await fetch(this.element.dataset.url);
+      html = await res.text();
+    }
 
     this.destroy();
     this.registry.replaceComponent(this, html);
-
-    // this.element.insertAdjacentHTML('beforebegin', html);
   }
 }

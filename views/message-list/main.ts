@@ -5,9 +5,15 @@ import getTemplatePath from '../../lib/get-template-path.ts';
 
 // @desc  Serve the message list view
 // @route GET /views/header
-export default async function getViewMessageList(ctx) {
-  // TODO: fetch data from API
-  const data = {};
+export default async function getViewMessagesList(ctx) {
+  const host = 'http://localhost:3000';
+  const resMessages = await fetch(`${host}/api/v1/messages`);
+  const resFavorites = await fetch(`${host}/api/v1/favorites`);
+
+  const data = {
+    messages: await resMessages.json(),
+    favorites: await resFavorites.json()
+  };
   
   const html = pug.renderFile(getTemplatePath('message-list'), {data})
   
@@ -20,7 +26,7 @@ if (import.meta.main) {
   app.use(router.routes())
 
   const router = new Router();
-  router.get('/', getViewMessageList)
+  router.get('/', getViewMessagesList)
 
   await app.listen({port: 3333})
 }

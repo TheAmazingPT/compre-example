@@ -5,11 +5,16 @@ section#MessageBox.component.section(
 
   h2.title.is-3 Share something with your friends
 
-  form#MessageBoxForm
+  form#MessageBoxForm(name="form")
     .field
       .control
-        textarea.textarea
-          | Example Payload
+        textarea.textarea.has-fixed-size(
+          name="message"
+          required
+          autofocus
+          maxlength="140"
+          placeholder="Write your message …"
+        )
 
     .field.is-grouped.is-pulled-right
       .control

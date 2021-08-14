@@ -6,8 +6,14 @@ import getTemplatePath from '../../lib/get-template-path.ts';
 // @desc  Serve the index file for root path
 // @route GET /
 export default async function getViewIndex(ctx) {
-  // TODO: fetch data from API
-  const data = {favorites: ['1', '2']};
+  const host = 'http://localhost:3000';
+  const resMessages = await fetch(`${host}/api/v1/messages`);
+  const resFavorites = await fetch(`${host}/api/v1/favorites`);
+
+  const data = {
+    messages: await resMessages.json(),
+    favorites: await resFavorites.json()
+  };
   
   const html = pug.renderFile(getTemplatePath('index'), {data})
   

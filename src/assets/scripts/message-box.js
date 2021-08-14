@@ -6,13 +6,14 @@ const textarea = component.element.querySelector('textarea')
 form.addEventListener('submit', async event => {
   event.preventDefault();
 
+  await fetch('/api/v1/messages', {
+    method: 'POST',
+    body: new FormData(form)
+  })
+
   textarea.setAttribute('disabled', true)
   textarea.parentNode.classList.add('is-loading')
 
-  await fetch('/api/v1/messages', {
-    method: 'POST',
-    body: new FormData(event.target)
-  })
-
   component.publish('update', {test: new Date().toISOString().split('T')[1]})
+  component.refresh();
 })
