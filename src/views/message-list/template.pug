@@ -1,4 +1,4 @@
-mixin message(message, favorites)
+mixin message(message)
   include message.pug
 
 section#MessageList.component.section(
@@ -9,4 +9,4 @@ section#MessageList.component.section(
   h2.title.is-3 Most recent messages
 
   each message in data.messages
-    +message(message, data.favorites)
+    +message(message)

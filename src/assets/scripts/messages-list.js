@@ -4,19 +4,34 @@ component.subscribe('MessageBox', 'update', () => component.refresh())
 component.element.querySelectorAll('.message').forEach(message => {
   const messageId = message.dataset.messageId;
 
-  message.querySelector('.message-favorite-button').addEventListener('click', async event => {
-    await fetch('/api/v1/favorites', {
-      method: 'POST',
+  const likeButton = message.querySelector('.message-like-button');
+  const favoriteButton = message.querySelector('.message-favorite-button');
+
+  likeButton.addEventListener('click', async event => {
+    const method = likeButton.classList.contains('active') ? 'DELETE' : 'POST';
+
+    await fetch('/api/v1/likes', {
+      method,
       body: JSON.stringify({messageId}),
       headers: {
         'content-type': 'application/json'
       }
     })
 
-    console.log('The Amazing PT added', messageId, 'to favorites')
+    component.refresh();
   })
 
-  message.querySelector('.message-like-button').addEventListener('click', event => {
-    console.log('The Amazing PT liked', messageId)
+  favoriteButton.addEventListener('click', async event => {
+    const method = favoriteButton.classList.contains('active') ? 'DELETE' : 'POST';
+
+    await fetch('/api/v1/favorites', {
+      method,
+      body: JSON.stringify({messageId}),
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+
+    component.refresh();
   })
 })

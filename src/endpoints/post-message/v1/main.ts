@@ -1,6 +1,6 @@
 import {v4} from 'https://deno.land/std@0.104.0/uuid/mod.ts';
 
-import data from '../../../data.ts';
+import data from '../../../../database/data.ts';
 
 export default async function postMessageV1(ctx) {
   const body = await ctx.request.body();

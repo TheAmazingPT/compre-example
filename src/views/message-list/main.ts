@@ -8,11 +8,9 @@ import getTemplatePath from '../../lib/get-template-path.ts';
 export default async function getViewMessagesList(ctx) {
   const host = 'http://localhost:3000';
   const resMessages = await fetch(`${host}/api/v1/messages`);
-  const resFavorites = await fetch(`${host}/api/v1/favorites`);
 
   const data = {
-    messages: await resMessages.json(),
-    favorites: await resFavorites.json()
+    messages: await resMessages.json()
   };
   
   const html = pug.renderFile(getTemplatePath('message-list'), {data})

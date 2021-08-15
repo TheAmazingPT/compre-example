@@ -1,20 +1,18 @@
 import sql from 'https://esm.sh/sql-template-tag';
 import {query} from '../../../lib/database.ts';
 
-export default async function getFavoritesByIdV1(ctx) {
-  const userId = ctx.state.userId;
+export default async function getUsersByLikesV1(ctx) {
+  const messageId = ctx.request.params.messageId;
 
   const messages = query(sql`
     SELECT
-      messages.id,
+      users.id,
       users.handle,
-      users.fullname,
-      messages.createdAt,
-      messages.text
+      users.email,
+      users.fullname
     FROM reactions
-    JOIN messages ON reactions.messageId = messages.id
     JOIN users ON reactions.userId = users.id
-    WHERE "userId" = ${ctx.state.userId} AND "favorite" = 1                         
+    WHERE "messageId" = ${messageId} AND "like" = 1                         
     ORDER BY messages.createdAt DESC
   `)
 

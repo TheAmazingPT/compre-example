@@ -1,7 +1,7 @@
 import sql from 'https://esm.sh/sql-template-tag';
 import {query} from '../../../lib/database.ts';
 
-export default async function postFavoritesV1(ctx) {
+export default async function postLikesV1(ctx) {
   const body = await ctx.request.body();
   const {messageId} = await body.value;
 
@@ -12,7 +12,7 @@ export default async function postFavoritesV1(ctx) {
       "id",
       "userId",
       "messageId",
-      "favorite"
+      "like"
     )
     VALUES (
       ${id},
@@ -20,7 +20,7 @@ export default async function postFavoritesV1(ctx) {
       ${messageId},
       1
     )
-    ON CONFLICT DO UPDATE SET favorite = 1;                         
+    ON CONFLICT DO UPDATE SET like = 1;                         
   `)
 
   ctx.response.status = 201;

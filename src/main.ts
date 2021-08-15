@@ -11,9 +11,13 @@ import getMessagesV1 from './endpoints/get-messages/v1/main.ts'
 import postMessageV1 from './endpoints/post-message/v1/main.ts'
 
 import getFavoritesV1 from './endpoints/get-favorites/v1/main.ts';
-import getFavoritesByIdV1 from './endpoints/get-favorites-by-id/v1/main.ts';
 import postFavoritesV1 from './endpoints/post-favorites/v1/main.ts';
-// import deleteFavoritesByIdV1 from './endpoints/get-favorites-by-id/v1/main.ts'
+import deleteFavoritesByIdV1 from './endpoints/delete-favorites-by-id/v1/main.ts'
+
+import getLikesV1 from './endpoints/get-likes/v1/main.ts';
+import getUsersByLikesV1 from './endpoints/get-users-by-likes/v1/main.ts';
+import postLikesV1 from './endpoints/post-likes/v1/main.ts';
+import deleteLikesByIdV1 from './endpoints/delete-likes-by-id/v1/main.ts'
 
 const router = new Router();
 
@@ -37,15 +41,21 @@ router.get('/api/v1/messages', getMessagesV1)
 router.post('/api/v1/messages', postMessageV1)
 // router.delete('/api/v1/messages/:id', deleteMessageById)
 // router.get('/api/v1/users/:id', getUserById)
+
+// Favorites are private and can't be seen without authentication!
 router.get('/api/v1/favorites', getFavoritesV1);
-router.get('/api/v1/favorites/:userId', getFavoritesByIdV1);
 router.post('/api/v1/favorites', postFavoritesV1);
-// router.delete('/api/v1/favorites/:messageId', deleteFavoritesByUserIdV1);
+router.delete('/api/v1/favorites', deleteFavoritesByIdV1);
+
+router.get('/api/v1/likes', getLikesV1);
+router.get('/api/v1/likes/:messageId', getUsersByLikesV1);
+router.post('/api/v1/likes', postLikesV1);
+router.delete('/api/v1/likes', deleteLikesByIdV1);
 
 const app = new Application();
 const port = 3000;
 
-app.state = {user: {id: '1', name: 'TheAmazingPT'}};
+app.state = {userId: '48783b01-5d77-4363-af4a-ee2282cfe6c3'};
 
 app.use(router.routes())
 app.use(serveStatic('assets'))

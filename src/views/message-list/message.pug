@@ -1,0 +1,28 @@
+.block
+  .card.message(data-message-id=message.id)
+    .card-content
+      .media
+        .media-left
+          figure.image.is-48x48
+            img(alt="Placeholder image" src="https://bulma.io/images/placeholders/96x96.png")
+        .media-content
+          p.title.is-5 #{message.fullname}
+          p.subtitle.is-6 #{message.createdAt}
+        .media-right
+          p.buttons
+            - const favoriteButtonLabel = message.isFavorite ? 'Remove from Favorites' : "Add to favorites";
+            button.button.is-small.message-favorite-button(aria-label=favoriteButtonLabel class=message.isFavorite && 'active')
+              span.icon
+                if message.isFavorite
+                  i.mdi.mdi-18px.mdi-star
+                else
+                  i.mdi.mdi-18px.mdi-star-outline
+            - const likeButtonLabel = message.isFavorite ? 'Remove from Favorites' : "Add to favorites";
+            button.button.is-small.message-like-button(aria-label=likeButtonLabel class=message.isLike && 'active')
+              span.icon
+                if message.isLike
+                  i.mdi.mdi-18px.mdi-heart
+                else
+                  i.mdi.mdi-18px.mdi-heart-outline
+              span #{message.likes}
+      .content #{message.text}

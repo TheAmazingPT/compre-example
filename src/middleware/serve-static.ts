@@ -11,7 +11,7 @@ export default function serveStatic(directoryName) {
 
     try {
       await ctx.send({
-        root: `${Deno.cwd()}/${directoryName}`,
+        root: `${Deno.cwd()}/src/${directoryName}`,
         path: parts.slice(1).join('/')
       });
     } catch (error) {
