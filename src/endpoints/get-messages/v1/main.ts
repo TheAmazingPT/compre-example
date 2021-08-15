@@ -24,7 +24,7 @@ export default async function getMessagesV1(ctx) {
       ) as isLike      
     FROM messages
     JOIN users ON messages.createdBy = users.id
-    JOIN reactions ON reactions.messageId = messages.id
+    LEFT JOIN reactions ON reactions.messageId = messages.id
     GROUP BY messages.id
     ORDER BY messages.createdAt DESC                         
   `)
