@@ -75,9 +75,9 @@ export default class Registry {
     delete this.subscriptions[componentId][action][subscriberId];
   }
 
-  publish(componentId, action, data) {
+  publish(componentId, action, data = null) {
     console.info('PUBLISH', componentId, action, data)
     this.setupSubscription(componentId, action);
-    Object.values(this.subscriptions[componentId][action]).forEach(subscriber => subscriber(data));
+    Object.values(this.subscriptions[componentId][action]).forEach(callback => callback(data));
   }
 }

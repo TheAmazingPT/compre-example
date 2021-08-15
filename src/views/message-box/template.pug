@@ -12,14 +12,14 @@ section#MessageBox.component.section(
           name="message"
           required
           autofocus
-          maxlength="140"
+          maxlength="300"
           placeholder="Write your message …"
         )
 
     .field.is-grouped.is-pulled-right
       .control
-        p 23 / 140
+        p#MessageBoxCounter.py-2.px-4 0/300
       .control
-        button.button.is-light Cancel
+        button.button.is-danger Reset
       .control
         button.button.is-primary Submit

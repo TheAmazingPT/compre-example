@@ -2,6 +2,11 @@ const component = Registry.findComponentByMetaUrl(import.meta.url);
 
 const form = component.element.querySelector('form')
 const textarea = component.element.querySelector('textarea')
+const counter = document.getElementById('MessageBoxCounter')
+
+textarea.addEventListener('input', event => {
+  counter.textContent = `${event.target.value.length}/300`;
+})
 
 form.addEventListener('submit', async event => {
   event.preventDefault();

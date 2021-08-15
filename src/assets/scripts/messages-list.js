@@ -18,6 +18,7 @@ component.element.querySelectorAll('.message').forEach(message => {
       }
     })
 
+    component.publish('update_message_like')
     component.refresh();
   })
 
@@ -32,6 +33,7 @@ component.element.querySelectorAll('.message').forEach(message => {
       }
     })
 
+    component.publish('update_message_favorite')
     component.refresh();
   })
 })
