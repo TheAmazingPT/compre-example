@@ -5,7 +5,8 @@ const textarea = component.element.querySelector('textarea')
 const counter = document.getElementById('MessageBoxCounter')
 
 textarea.addEventListener('input', event => {
-  counter.textContent = `${event.target.value.length}/300`;
+  const count = event.target.value.length;
+  counter.textContent = count ? `${count}/${textarea.maxLength}` : '';
 })
 
 form.addEventListener('submit', async event => {
