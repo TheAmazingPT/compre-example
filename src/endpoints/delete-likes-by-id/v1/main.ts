@@ -1,18 +1,19 @@
-import sql from 'https://esm.sh/sql-template-tag';
-import {query} from '../../../lib/database.ts';
+import { RouterContext } from "oak";
+import sql from "https://esm.sh/sql-template-tag";
 
-export default async function deleteLikesV1(ctx) {
+import { query } from "../../../lib/database.ts";
+
+export default async function deleteLikesV1(ctx: RouterContext) {
   const body = await ctx.request.body();
-  const {messageId} = await body.value;
+  const { messageId } = await body.value;
 
-  const id = `${ctx.state.userId}_${messageId}`;
+  const reactionId = `${ctx.state.userId}_${messageId}`;
 
-  const res = query(sql`
+  query(sql`
     UPDATE reactions
     SET like = 0
-    WHERE id = ${id}
-  `)
+    WHERE id = ${reactionId}
+  `);
 
   ctx.response.status = 204;
 }
-

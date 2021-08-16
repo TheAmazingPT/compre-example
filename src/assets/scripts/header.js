@@ -1,4 +1,4 @@
-const component = Registry.findComponentByMetaUrl(import.meta.url);
+Registry.findComponentByMetaUrl(import.meta.url);
 
 // Maybe something like this is nicer to use?
 // window.Registry.subscribe('MessageBox')

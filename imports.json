@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "oak": "https://deno.land/x/oak/mod.ts",
+    "std": "https://deno.land/x/oak/mod.ts",
+    "pug": "https://esm.sh/pug",
+    "lib/": "./src/lib/"
+  }
+}

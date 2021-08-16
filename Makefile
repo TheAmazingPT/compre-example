@@ -5,6 +5,7 @@ start:
 		--allow-net \
 		--allow-read \
 		--allow-write \
+		--import-map=imports.json \
 		src/main.ts
 
 setup:

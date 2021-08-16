@@ -7,7 +7,7 @@ component.element.querySelectorAll('.message').forEach(message => {
   const likeButton = message.querySelector('.message-like-button');
   const favoriteButton = message.querySelector('.message-favorite-button');
 
-  likeButton.addEventListener('click', async event => {
+  likeButton.addEventListener('click', async () => {
     const method = likeButton.classList.contains('active') ? 'DELETE' : 'POST';
 
     await fetch('/api/v1/likes', {
@@ -22,7 +22,7 @@ component.element.querySelectorAll('.message').forEach(message => {
     component.refresh();
   })
 
-  favoriteButton.addEventListener('click', async event => {
+  favoriteButton.addEventListener('click', async () => {
     const method = favoriteButton.classList.contains('active') ? 'DELETE' : 'POST';
 
     await fetch('/api/v1/favorites', {

@@ -34,7 +34,7 @@ export default class Component {
 
   // TODO: experiment with Shadow DOM, where a script can be automatically be
   // executed.
-  initScript(componentId) {
+  initScript() {
     if (!this.element.dataset.scripturl) {
       return;
     }
