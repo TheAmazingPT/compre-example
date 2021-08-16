@@ -21,10 +21,10 @@ This project is a showcase, which shows a twitter-like chat application, in whic
 many different kinds of components are created.
 
 ### Dependencies
-- [Deno ~v1.13.0](https://github.com/denoland/deno/releases/latest)
-- [sqlite3](https://sqlite.org/download.html)
 
 For both you should be able to use Homebrew or MacPorts to install those tools on macOS.
+- [Deno ~v1.13.0](https://github.com/denoland/deno/releases/latest)
+- [sqlite3](https://sqlite.org/download.html)
 
 ### Setup
 ```
